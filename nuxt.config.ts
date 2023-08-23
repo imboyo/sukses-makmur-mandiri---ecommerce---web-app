@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  css: ['~/assets/css/tailwind.css'],
+  css: ["~/assets/css/tailwind.css"],
   devtools: { enabled: true },
   postcss: {
     plugins: {
@@ -8,4 +8,11 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-})
+  modules: [
+    "@nuxtjs/eslint-module",
+    "@nuxt/image",
+    "@nuxt/content",
+    "nuxt-icon",
+    "nuxt-simple-sitemap",
+  ]
+});

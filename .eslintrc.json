@@ -17,7 +17,6 @@
   },
   "plugins": ["@typescript-eslint", "vue"],
   "rules": {
-    "vue/no-unused-vars": 0,
     "vue/multi-word-component-names": 0
   }
 }
