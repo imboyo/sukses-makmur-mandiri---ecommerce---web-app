@@ -14,5 +14,7 @@ export default defineNuxtConfig({
     "@nuxt/content",
     "nuxt-icon",
     "nuxt-simple-sitemap",
-  ]
+    "nuxt-lodash",
+    "@pinia/nuxt",
+  ],
 });
