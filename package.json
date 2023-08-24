@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.11",
+    "@tanstack/vue-query": "^4.34.0",
     "pinia": "^2.1.6"
   }
 }
