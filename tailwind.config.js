@@ -85,6 +85,7 @@ module.exports = {
         "xl": "0px 8px 8px -4px rgba(16, 24, 40, 0.04), 0px 20px 24px -4px rgba(16, 24, 40, 0.10)",
         "2xl": "0px 24px 48px -12px rgba(16, 24, 40, 0.25)",
         "3xl": "0px 32px 64px -12px rgba(16, 24, 40, 0.20)",
+        "focus-ring-primary": "0px 0px 0px 4px #F4EBFF"
       }
     },
     fontFamily: {

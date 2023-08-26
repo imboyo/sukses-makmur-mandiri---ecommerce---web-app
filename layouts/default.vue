@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import TopNavigation from "~/components/ui/navigation/TopNavigation.vue";
+import NavigationTop from "~/components/ui/navigation/NavigationTop.vue";
 </script>
 
 <template>
   <main>
-    <TopNavigation />
+    <NavigationTop />
 
     <!-- Region: Page Content  -->
     <slot />
