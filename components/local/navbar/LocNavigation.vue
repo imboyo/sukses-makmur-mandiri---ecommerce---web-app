@@ -6,7 +6,7 @@ import VNavigationSide from "~/components/ui/navigation/VNavigationSide.vue";
 import { ref } from "vue";
 import VNavigationMenuItem from "~/components/ui/navigation/VNavigationMenuItem.vue";
 
-const isOpenState = ref(true);
+const isOpenState = ref(false);
 </script>
 
 <template>
@@ -27,7 +27,7 @@ const isOpenState = ref(true);
     <div class="flex h-full flex-col">
       <!--  Logo -->
       <div class="flex flex-row items-center p-4">
-        <!--      Use Logo    -->
+        <!-- TODO: Use Real Logo/Title Later -->
         <h1 class="text-2xl font-bold">Logo</h1>
       </div>
 

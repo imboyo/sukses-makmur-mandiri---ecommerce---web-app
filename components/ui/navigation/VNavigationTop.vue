@@ -4,7 +4,7 @@
 
 <template>
   <nav
-    class="flex flex-row items-center justify-between bg-white p-4 shadow-md"
+    class="flex flex-row items-center justify-between bg-white p-4 shadow-md lg:px-20"
   >
     <slot></slot>
   </nav>
