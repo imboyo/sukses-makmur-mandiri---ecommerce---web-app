@@ -6,7 +6,13 @@ import VButton from "~/components/ui/button/VButton.vue";
   <div class="mt-4 px-4 py-20 flex flex-col gap-8">
     <div class="flex flex-row gap-2">
       <VButton destructive>Button</VButton>
-      <VButton destructive variant="primary" prepend-icon="ic:baseline-menu">Button</VButton>
+      <VButton
+        destructive
+        variant="primary"
+        prepend-icon="ic:baseline-menu"
+        append-icon="ic:baseline-home"
+        >Button
+      </VButton>
       <VButton destructive variant="secondary">Button</VButton>
       <VButton destructive variant="secondary-gray">Button</VButton>
       <VButton destructive variant="tertiary">Button</VButton>
@@ -49,7 +55,7 @@ import VButton from "~/components/ui/button/VButton.vue";
     </div>
 
     <div class="flex flex-row gap-2">
-      <VButton disabled>Button</VButton>
+      <VButton icon="ic:baseline-menu">Button</VButton>
       <VButton disabled variant="primary">Button</VButton>
       <VButton disabled variant="secondary">Button</VButton>
       <VButton disabled variant="secondary-gray">Button</VButton>
@@ -57,6 +63,10 @@ import VButton from "~/components/ui/button/VButton.vue";
       <VButton disabled variant="tertiary-gray">Button</VButton>
       <VButton disabled variant="link">Button</VButton>
       <VButton disabled variant="link-gray">Button</VButton>
+    </div>
+
+    <div>
+      <VButton destructive variant="secondary" icon="ic:baseline-menu" size="md"></VButton>
     </div>
   </div>
 </template>
