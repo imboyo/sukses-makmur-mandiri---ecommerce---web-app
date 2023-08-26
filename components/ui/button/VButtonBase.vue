@@ -90,8 +90,7 @@ const iconClass = computed(() => {
     <!--  Prepend Icon  -->
 
     <template v-if="isLoading">
-      <Icon name="ic:baseline-cached" class="animate-spin" />
-      <span class="ml-2">Loading...</span>
+      <Icon name="ic:baseline-cached" class="animate-spin" :class="iconClass" />
     </template>
 
     <template v-else>
@@ -101,3 +100,9 @@ const iconClass = computed(() => {
     </template>
   </button>
 </template>
+
+<style lang="scss" scoped>
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+</style>
