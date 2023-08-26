@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {useDeviceSize} from "~/composables/useDeviceSize";
+import { useDeviceSize } from "~/composables/useDeviceSize";
 
 interface PropsType {
   isOpen: boolean;
@@ -7,25 +7,23 @@ interface PropsType {
 
 defineProps<PropsType>();
 
-const {isTabletAndBelow} = useDeviceSize()
+const { isTabletAndBelow } = useDeviceSize();
 defineEmits(["close"]);
 </script>
 
 <template>
   <div
     v-if="isOpen && isTabletAndBelow"
-    class="fixed bg-gray-900 bg-opacity-50 top-0 left-0 w-screen h-screen"
+    class="fixed top-0 left-0 h-screen w-screen bg-gray-900 bg-opacity-50"
     @click="$emit('close')"
   ></div>
 
   <transition name="slide">
     <nav
       v-show="isOpen && isTabletAndBelow"
-      class="fixed top-0 left-0 h-screen w-72 bg-white shadow-xl"
+      class="fixed top-0 left-0 h-screen w-72 bg-white shadow-xl px-4"
     >
-      <div class="flex flex-col p-4">
-        <h1 class="text-2xl font-bold">Logo</h1>
-      </div>
+      <slot></slot>
     </nav>
   </transition>
 </template>
