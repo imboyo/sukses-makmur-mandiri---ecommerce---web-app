@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import VInputDropdown from "~/components/ui/Input/VInputDropdown.vue";
+import Private__VInputDropdownMenuItem from "~/components/ui/Input/_VInputDropdownMenuItem.vue";
 
 const items = ref(["Item 1", "Item 2", "Item 3"]);
 </script>
@@ -10,7 +11,9 @@ const items = ref(["Item 1", "Item 2", "Item 3"]);
     <div class="w-[400px]">
       <VInputDropdown :items="items" label="Kategori">
         <template #default="{ item }">
-          <p>{{ item }}</p>
+          <Private__VInputDropdownMenuItem
+            >{{ item }}
+          </Private__VInputDropdownMenuItem>
         </template>
       </VInputDropdown>
     </div>
