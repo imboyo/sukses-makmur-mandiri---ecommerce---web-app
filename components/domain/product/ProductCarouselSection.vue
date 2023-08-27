@@ -4,13 +4,14 @@ import { Carousel, Navigation, Slide } from "vue3-carousel";
 
 <template>
   <!-- TODO: Featured Product Carousel Section -->
-  <section>
+  <section class="relative -z-50">
     <Carousel>
       <template #slides>
         <Slide v-for="n in 10" :key="n">
           <div class="carousel__item">
             <!-- TODO: Use Real Data  -->
             <img
+              class="-z-50"
               src="https://source.unsplash.com/random/800x600"
               alt="Random Unsplash Image"
             />

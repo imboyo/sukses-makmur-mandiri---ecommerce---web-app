@@ -3,7 +3,7 @@ import VButton from "~/components/ui/button/VButton.vue";
 </script>
 
 <template>
-  <div class="mt-4 px-4 py-20 flex flex-col gap-8">
+  <div class="mt-4 flex flex-col gap-8 px-4 py-20">
     <div class="flex flex-row gap-2">
       <VButton destructive>Button</VButton>
       <VButton

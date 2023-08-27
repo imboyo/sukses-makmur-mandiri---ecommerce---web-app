@@ -12,6 +12,7 @@ defineEmits(["close"]);
 </script>
 
 <template>
+  <!-- Overlay -->
   <div
     v-if="isOpen && isTabletAndBelow"
     class="fixed top-0 left-0 h-screen w-screen bg-gray-900 bg-opacity-50"
@@ -21,7 +22,7 @@ defineEmits(["close"]);
   <transition name="slide">
     <nav
       v-show="isOpen && isTabletAndBelow"
-      class="fixed top-0 left-0 h-screen w-72 bg-white shadow-xl px-4"
+      class="fixed top-0 left-0 h-screen w-72 bg-white px-4 shadow-xl"
     >
       <slot></slot>
     </nav>

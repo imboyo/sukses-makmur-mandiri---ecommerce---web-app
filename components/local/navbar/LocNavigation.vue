@@ -20,7 +20,7 @@ const isOpenState = ref(false);
       <h1 class="text-2xl font-bold">Logo</h1>
 
       <!--   Link List   -->
-      <div class="flex flex-row ml-6">
+      <div class="ml-6 flex flex-row">
         <NuxtLink to="/">
           <VButton variant="link-gray">Beranda</VButton>
         </NuxtLink>
@@ -39,7 +39,7 @@ const isOpenState = ref(false);
     />
 
     <!--  Only in Desktop  -->
-    <div class="hidden lg:flex flex-row gap-4">
+    <div class="hidden flex-row gap-4 lg:flex">
       <LNavigationInputSearch />
     </div>
   </VNavigationTop>
