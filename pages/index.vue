@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useHead } from "unhead";
+import ProductCarouselSection from "~/components/domain/product/ProductCarouselSection.vue";
 
 useHead({
   title: "Sukses Makmur Mandiri",
@@ -14,5 +15,5 @@ useHead({
 </script>
 
 <template>
-  <h1 class="text-3xl font-bold underline">Hello world!</h1>
+  <ProductCarouselSection />
 </template>
