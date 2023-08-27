@@ -11,7 +11,7 @@ import CategoryCard from "~/components/domain/category/CategoryCard.vue";
     <div
       class="grid grid-cols-2 gap-x-4 gap-y-4 md:grid-cols-4 lg:grid-cols-6 lg:gap-x-8"
     >
-      <!--  TODO: Use Real Data     -->
+      <!--  TODO: Use Real Data. The Data should from API  -->
       <CategoryCard
         v-for="i in 10"
         :key="i"

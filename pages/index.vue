@@ -21,5 +21,14 @@ useHead({
 
   <VContainer>
     <CategoryChoosenList />
+
+    <section class="py-[50px]">
+      <h1 class="text-xl font-semiBold">Popular Product Ranking</h1>
+
+      <!-- Product List -->
+      <div>
+        <!-- TODO: Filter Form -->
+      </div>
+    </section>
   </VContainer>
 </template>
