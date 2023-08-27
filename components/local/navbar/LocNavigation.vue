@@ -5,24 +5,47 @@ import VNavigationSide from "~/components/ui/navigation/VNavigationSide.vue";
 
 import { ref } from "vue";
 import VNavigationMenuItem from "~/components/ui/navigation/VNavigationMenuItem.vue";
+import VButton from "~/components/ui/button/VButton.vue";
+import LNavigationInputSearch from "~/components/local/navbar/LNavigationInputSearch.vue";
 
 const isOpenState = ref(false);
 </script>
 
 <template>
+  <!-- Region: Navigation Top -->
   <VNavigationTop>
-    <!--  TODO: Use Real Logo/Title Later  -->
-    <div>
+    <!--   Sideleft -->
+    <div class="flex flex-row items-center">
+      <!--  TODO: Use Real Logo/Title Later  -->
       <h1 class="text-2xl font-bold">Logo</h1>
+
+      <!--   Link List   -->
+      <div class="flex flex-row ml-6">
+        <NuxtLink to="/">
+          <VButton variant="link-gray">Beranda</VButton>
+        </NuxtLink>
+        <NuxtLink to="/kategori">
+          <VButton variant="link-gray">Kategori</VButton>
+        </NuxtLink>
+      </div>
     </div>
 
+    <!--  Region: Right Side  -->
+    <!--  Only in Mobile  -->
     <VNavigationMenuButton
       @click="isOpenState = !isOpenState"
       :is-open="isOpenState"
       class="lg:hidden"
     />
+
+    <!--  Only in Desktop  -->
+    <div class="hidden lg:flex flex-row gap-4">
+      <LNavigationInputSearch />
+    </div>
   </VNavigationTop>
-  <VNavigationSide :is-open="isOpenState" @close="isOpenState = false" >
+
+  <!-- Region: Navigation Side -->
+  <VNavigationSide :is-open="isOpenState" @close="isOpenState = false">
     <!--  Sidenav Content    -->
     <div class="flex h-full flex-col">
       <!--  Logo -->

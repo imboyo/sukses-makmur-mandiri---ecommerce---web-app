@@ -56,7 +56,6 @@ const buttonClass = computed(() => {
   }
 
   // Size
-  // TODO: Use Actual Value from Figma Later. Its just a placeholder for now.
   // Padding
   const sizeClassValue = {
     sm: "p-2",
