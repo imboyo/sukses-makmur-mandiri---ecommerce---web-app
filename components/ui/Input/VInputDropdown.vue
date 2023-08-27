@@ -2,27 +2,28 @@
 import VInputDropdownWrapper__Private from "~/components/ui/Input/_VInputDropdownWrapper.vue";
 import { ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
+import VInputDropdownMenuItem__Private from "~/components/ui/Input/_VInputDropdownMenuItem.vue";
 
 type ItemType = string | number | boolean | object;
-
 defineProps<{
   label: string;
   items: ItemType[];
   prependIcon?: string;
 }>();
+
 const emit = defineEmits(["update:modelValue"]);
 
 const isOpen = ref(false);
 const dropdownRef = ref(null);
 const choosenItem = ref<ItemType | null>(null);
 
-const handleSelectInputClick = () => {
-  isOpen.value = !isOpen.value;
-};
-
 onClickOutside(dropdownRef, () => {
   isOpen.value = false;
 });
+
+const handleSelectInputClick = () => {
+  isOpen.value = !isOpen.value;
+};
 
 const handleSelectItem = (item: ItemType) => {
   choosenItem.value = item;
@@ -51,14 +52,14 @@ const handleSelectItem = (item: ItemType) => {
 
     <!-- Dropdown -->
     <Transition name="options-transition">
-      <div v-if="isOpen">
+      <div v-if="isOpen && items.length > 0">
         <div
           v-for="item in items"
           :key="item"
           @click="() => handleSelectItem(item)"
           class="cursor-pointer"
         >
-          <slot :item="item"></slot>
+          <VInputDropdownMenuItem__Private>{{ item }}</VInputDropdownMenuItem__Private>
         </div>
       </div>
     </Transition>

@@ -1,28 +1,88 @@
 <script setup lang="ts">
-import { Carousel, Navigation, Slide } from "vue3-carousel";
+import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
+
+const items = [
+  {
+    id: 1,
+    name: "Product 1",
+    price: 10000,
+    image: "https://i.imgur.com/xUm9QEE.png",
+  },
+  {
+    id: 2,
+    name: "Product 2",
+    price: 20000,
+    image: "https://source.unsplash.com/random/800x300",
+  },
+  {
+    id: 3,
+    name: "Product 3",
+    price: 30000,
+    image: "https://source.unsplash.com/random/800x300",
+  },
+  {
+    id: 4,
+    name: "Product 4",
+    price: 40000,
+    image: "https://source.unsplash.com/random/800x300",
+  },
+  {
+    id: 5,
+    name: "Product 5",
+    price: 50000,
+    image: "https://source.unsplash.com/random/800x300",
+  },
+  {
+    id: 6,
+    name: "Product 6",
+    price: 60000,
+    image: "https://source.unsplash.com/random/800x300",
+  },
+  {
+    id: 7,
+    name: "Product 7",
+    price: 70000,
+    image: "https://source.unsplash.com/random/800x300",
+  },
+  {
+    id: 8,
+    name: "Product 8",
+    price: 80000,
+    image: "https://source.unsplash.com/random/800x300",
+  },
+  {
+    id: 9,
+    name: "Product 9",
+    price: 90000,
+    image: "https://source.unsplash.com/random/800x300",
+  },
+  {
+    id: 10,
+    name: "Product 10",
+    price: 100000,
+    image: "https://source.unsplash.com/random/800x300",
+  },
+];
 </script>
 
 <template>
   <!-- TODO: Featured Product Carousel Section -->
   <section class="relative -z-50">
-    <Carousel>
+    <carousel>
       <template #slides>
-        <Slide v-for="n in 10" :key="n">
+        <slide v-for="item in items" :key="item.id">
           <div class="carousel__item">
             <!-- TODO: Use Real Data  -->
-            <img
-              class="-z-50"
-              src="https://source.unsplash.com/random/800x600"
-              alt="Random Unsplash Image"
-            />
+            <img class="-z-50" :src="item.image" alt="Random Unsplash Image" />
           </div>
-        </Slide>
+        </slide>
       </template>
 
       <template #addons>
-        <navigation />
+        <Pagination />
+        <Navigation />
       </template>
-    </Carousel>
+    </carousel>
   </section>
 </template>
 

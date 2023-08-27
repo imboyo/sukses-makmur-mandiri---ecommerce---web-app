@@ -20,7 +20,7 @@ const isOpenState = ref(false);
       <h1 class="text-2xl font-bold">Logo</h1>
 
       <!--   Link List   -->
-      <div class="ml-6 flex flex-row">
+      <div class="ml-6 flex-row hidden lg:flex">
         <NuxtLink to="/">
           <VButton variant="link-gray">Beranda</VButton>
         </NuxtLink>

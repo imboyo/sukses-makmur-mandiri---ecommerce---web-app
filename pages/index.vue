@@ -3,6 +3,7 @@ import { useHead } from "unhead";
 import ProductCarouselSection from "~/components/domain/product/ProductCarouselSection.vue";
 import VContainer from "~/components/ui/container/VContainer.vue";
 import CategoryChoosenList from "~/components/domain/category/CategoryChoosenList.vue";
+import CategoryFilterList from "~/components/domain/category/ProductListByCategory.vue";
 
 useHead({
   title: "Sukses Makmur Mandiri",
@@ -21,14 +22,6 @@ useHead({
 
   <VContainer>
     <CategoryChoosenList />
-
-    <section class="py-[50px]">
-      <h1 class="text-xl font-semiBold">Popular Product Ranking</h1>
-
-      <!-- Product List -->
-      <div>
-        <!-- TODO: Filter Form -->
-      </div>
-    </section>
+    <CategoryFilterList />
   </VContainer>
 </template>

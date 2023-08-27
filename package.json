@@ -36,6 +36,7 @@
     "@pinia/nuxt": "^0.4.11",
     "@tanstack/vue-query": "^4.34.0",
     "@vueuse/core": "^10.4.0",
+    "axios": "^1.5.0",
     "pinia": "^2.1.6",
     "vue3-carousel": "^0.3.1"
   }
