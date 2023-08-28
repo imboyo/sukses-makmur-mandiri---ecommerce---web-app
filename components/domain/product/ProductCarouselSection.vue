@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
+import {Carousel, Slide, Pagination, Navigation} from "vue3-carousel";
 
 const items = [
   {
@@ -67,22 +67,21 @@ const items = [
 
 <template>
   <!-- TODO: Featured Product Carousel Section -->
-  <section class="relative -z-50">
-    <carousel>
-      <template #slides>
-        <slide v-for="item in items" :key="item.id">
-          <div class="carousel__item">
-            <!-- TODO: Use Real Data  -->
-            <img class="-z-50" :src="item.image" alt="Random Unsplash Image" />
-          </div>
-        </slide>
-      </template>
+  <section class="">
+    <Carousel>
+      <Slide v-for="item in items" :key="item.id">
+        <div class="carousel__item">
+          <!-- TODO: Use Real Data  -->
+          <lazy-nuxt-img class="-z-50" :src="item.image" alt="Random Unsplash Image"/>
+        </div>
+      </Slide>
+
 
       <template #addons>
-        <Pagination />
-        <Navigation />
+        <Pagination/>
+        <Navigation/>
       </template>
-    </carousel>
+    </Carousel>
   </section>
 </template>
 

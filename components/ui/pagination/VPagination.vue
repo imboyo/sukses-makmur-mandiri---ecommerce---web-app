@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, ref, watch } from "vue";
+import {computed, ref, watch} from "vue";
 import VButton from "~/components/ui/button/VButton.vue";
 
 const props = defineProps<{
@@ -27,7 +27,7 @@ const visiblePageRange = computed(() => {
   const isNextPage = modelValue.value < props.totalPage;
 
   return {
-    pages: Array.from({ length: max - min + 1 }, (_, i) => min + i),
+    pages: Array.from({length: max - min + 1}, (_, i) => min + i),
     isPreviousTruncated,
     isNextTruncated,
     isPreviousPage,
@@ -38,27 +38,25 @@ const visiblePageRange = computed(() => {
 
 <template>
   <div class="flex justify-center mt-4 gap-2 items-center">
-    <Icon
-      name="grommet-icons:previous"
+    <VButton
       v-if="visiblePageRange.isPreviousTruncated"
-      @click="modelValue = modelValue - 1;"
-      class="cursor-pointer hover:text-primary-500"
-    />
+      icon-only="ic:baseline-navigate-before"
+      variant="secondary"
+      @click="modelValue = modelValue - 1;"/>
 
     <p v-if="visiblePageRange.isPreviousTruncated">...</p>
     <template v-for="page in visiblePageRange.pages" :key="page">
-      <VButton variant="primary" @click="modelValue = page"
-        >{{ page }}
+      <VButton variant="secondary" @click="modelValue = page"
+      >{{ page }}
       </VButton>
     </template>
     <p v-if="visiblePageRange.isNextTruncated">...</p>
 
-    <Icon
-      name="ic:baseline-navigate-next"
-      v-if="visiblePageRange.isNextPage"
-      @click="modelValue = modelValue + 1;"
-      class="cursor-pointer hover:text-primary-500"
-    />
+    <VButton
+      v-if="visiblePageRange.isNextTruncated"
+      icon-only="ic:baseline-navigate-next"
+      variant="secondary"
+      @click="modelValue = modelValue + 1;"/>
   </div>
 </template>
 

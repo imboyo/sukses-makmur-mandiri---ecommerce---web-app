@@ -15,14 +15,14 @@ defineEmits(["close"]);
   <!-- Overlay -->
   <div
     v-if="isOpen && isTabletAndBelow"
-    class="fixed top-0 left-0 h-screen w-screen bg-gray-900 bg-opacity-50"
+    class="fixed top-0 left-0 h-screen w-screen bg-gray-900 bg-opacity-50 z-[999]"
     @click="$emit('close')"
   ></div>
 
   <transition name="slide">
     <nav
       v-show="isOpen && isTabletAndBelow"
-      class="fixed top-0 left-0 h-screen w-72 bg-white px-4 shadow-xl"
+      class="z-[1000] fixed top-0 left-0 h-screen w-72 bg-white px-4 shadow-xl"
     >
       <slot></slot>
     </nav>

@@ -18,5 +18,6 @@ export interface ComponentButtonBasePropsType {
   width?: "full" | "fit";
   disabled?: boolean;
   isLoading?: boolean;
+  iconOnly?: string;
 }
 

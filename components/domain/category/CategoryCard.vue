@@ -16,7 +16,7 @@ defineProps<PropsType>();
   >
     <!--  Image -->
     <div class="overflow-hidden rounded-xl w-[50px] h-[50px]">
-      <img :src="image" :alt="image" class="h-full w-full object-cover" />
+      <lazy-nuxt-img loading="lazy" :src="image" :alt="image" class="h-full w-full object-cover" />
     </div>
 
     <!-- Description -->
