@@ -31,7 +31,7 @@ defineEmits(["click"]);
     <!-- Dropdown Icon -->
     <Icon
       :name="props.isOpen ? 'teenyicons:up-solid' : 'teenyicons:down-solid'"
-      class="w-4 h-4 text-gray-500"
+      class="h-4 w-4 text-gray-500"
     />
   </div>
 </template>

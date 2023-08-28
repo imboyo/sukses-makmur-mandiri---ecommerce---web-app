@@ -33,7 +33,7 @@ const handleSelectItem = (item: ItemType) => {
 </script>
 
 <template>
-  <div ref="dropdownRef">
+  <div ref="dropdownRef" class="relative">
     <VInputDropdownWrapper__Private
       @click="handleSelectInputClick"
       :is-open="isOpen"
@@ -42,7 +42,7 @@ const handleSelectItem = (item: ItemType) => {
       <Icon
         v-if="prependIcon"
         :name="prependIcon"
-        class="w-4 h-4 text-gray-500"
+        class="h-4 w-4 text-gray-500"
       />
 
       <!-- Placeholder and Filled State -->
@@ -62,10 +62,10 @@ const handleSelectItem = (item: ItemType) => {
 
     <!-- Dropdown -->
     <Transition name="options-transition">
-      <div v-if="isOpen && items.length > 0" class="shadow-md">
+      <div v-if="isOpen && items.length > 0" class="absolute w-full bg-white shadow-md">
         <div
-          v-for="item in items"
-          :key="item"
+          v-for="(item, index) in items"
+          :key="index"
           @click="() => handleSelectItem(item)"
           class="cursor-pointer"
         >

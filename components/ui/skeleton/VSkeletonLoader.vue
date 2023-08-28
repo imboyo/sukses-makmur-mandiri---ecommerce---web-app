@@ -1,7 +1,7 @@
 <template>
   <div class="animate-pulse">
-    <div class="w-full h-40 bg-gray-300 rounded-md"></div>
-    <div class="w-full h-4 mt-2 bg-gray-300 rounded-md"></div>
-    <div class="w-full h-4 mt-2 bg-gray-300 rounded-md"></div>
+    <div class="h-40 w-full rounded-md bg-gray-300"></div>
+    <div class="mt-2 h-4 w-full rounded-md bg-gray-300"></div>
+    <div class="mt-2 h-4 w-full rounded-md bg-gray-300"></div>
   </div>
 </template>

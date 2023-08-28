@@ -37,7 +37,7 @@ const visiblePageRange = computed(() => {
 </script>
 
 <template>
-  <div class="flex justify-center mt-4 gap-2 items-center">
+  <div class="mt-4 flex items-center justify-center gap-2">
     <VButton
       v-if="visiblePageRange.isPreviousTruncated"
       icon-only="ic:baseline-navigate-before"
