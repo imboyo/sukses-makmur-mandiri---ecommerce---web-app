@@ -4,9 +4,7 @@ import VBreadcrumb from "~/components/ui/breadcrumb/VBreadcrumb.vue";
 import VContainer from "~/components/ui/container/VContainer.vue";
 import { useQuery } from "@tanstack/vue-query";
 import { getCategoriesSubService } from "~/services/category/get-categories-sub.service";
-import CategoryCard from "~/components/domain/category/CategoryCard.vue";
-import VSkeletonLoader from "~/components/ui/skeleton/VSkeletonLoader.vue";
-import { computed, ref, watch } from "vue";
+import { computed, ref } from "vue";
 import { ComponentBreadcrumbType } from "~/types/component-breadcrumb";
 import { getProductsService } from "~/services/product/get-products.service";
 import ProductList from "~/components/domain/product/ProductList.vue";
@@ -14,8 +12,8 @@ import VInputDropdown from "~/components/ui/Input/VInputDropdown.vue";
 import SubCategoryList from "~/components/domain/category/SubCategoryList.vue";
 
 const route = useRoute();
-// Kategori/[id]
 
+// * Category List
 const {
   data: categoryData,
   isLoading: categoryIsLoading,
@@ -26,6 +24,7 @@ const {
   queryFn: () => getCategoriesSubService(+route.params.id),
 });
 
+// * Breadcrumb
 const breadcrumb = computed(() => {
   if (categoryIsSuccess.value) {
     return [
@@ -54,6 +53,7 @@ const breadcrumb = computed(() => {
   return breadcrumb;
 });
 
+// * Product List
 const currPage = ref(1);
 const sortByState = ref("Terbaru");
 const {
@@ -69,6 +69,7 @@ const {
 
 <template>
   <VContainer class="flex flex-col gap-8 mt-6">
+    <!--  Region: Category List  -->
     <VBreadcrumb :items="breadcrumb" />
     <SubCategoryList
       :is-loading="categoryIsLoading"
@@ -79,22 +80,10 @@ const {
     />
 
     <section class="grid grid-cols-5 gap-8">
-      <!--   Filter   -->
-      <div class="col-span-1">
-        <div class="flex flex-col gap-4">
-          <div class="flex flex-col gap-2">
-            <h1 class="text-xl font-semibold">Urutkan</h1>
-            <div class="flex flex-col gap-2">
-              <VInputDropdown
-                label="Urut Berdasarkan"
-                :items="['Terbaru', 'Harga']"
-                v-model="sortByState"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+      <!--  Region: Filter Form   -->
+      <div class="col-span-1"></div>
 
+      <!-- Region: Product List -->
       <div class="col-span-4">
         <VInputDropdown
           label="Urut Berdasarkan"

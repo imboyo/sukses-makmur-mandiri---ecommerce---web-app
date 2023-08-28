@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import CategoryCard from "~/components/domain/category/CategoryCard.vue";
 import VSkeletonLoader from "~/components/ui/skeleton/VSkeletonLoader.vue";
+import { CategoriesApiResponseType } from "~/types/categories-api.type";
 
 defineProps<{
   isLoading: boolean;
   error: unknown;
-  data: any;
+  data: CategoriesApiResponseType;
   isSuccess: boolean;
   paramsId: string[] | string;
 }>();
