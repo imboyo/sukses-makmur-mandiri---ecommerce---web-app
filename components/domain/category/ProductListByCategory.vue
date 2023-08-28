@@ -36,7 +36,7 @@ defineEmits(["update:modelValue"]);
     <div class="flex flex-col gap-2">
       <VInputDropdown
         label="Kategori"
-        :items="['Item 1']"
+        :items="['Item 1', 'Item 2', 'Item 3']"
         @update:model-value="categoryState = $event"
       />
       <VInputDropdown

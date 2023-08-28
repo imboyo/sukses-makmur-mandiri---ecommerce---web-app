@@ -12,8 +12,20 @@ import SubCategoryList from "~/components/domain/category/SubCategoryList.vue";
 import VTextInput from "~/components/ui/Input/VTextInput.vue";
 import CategorySideFilterItem from "~/components/domain/category/CategorySideFilterItem.vue";
 import { useProductList } from "~/composables/domain/product/useProductList";
+import { useHead } from "unhead";
 
 const route = useRoute();
+
+useHead({
+  title: "Kategori",
+  meta: [
+    {
+      // TODO: Change this to your own description
+      name: "description",
+      content: "This is a hello world page",
+    },
+  ],
+});
 
 // * Category List
 const {
@@ -68,6 +80,10 @@ const {
 </script>
 
 <template>
+  <Head v-if="categoryData">
+    <Title>Kategori - {{ categoryData.name }}</Title>
+  </Head>
+
   <VContainer class="mt-6 flex flex-col gap-8">
     <!--  Region: Category List  -->
     <VBreadcrumb :items="breadcrumb" />
@@ -76,12 +92,12 @@ const {
       :data="categoryData"
       :error="categoryError"
       :is-success="categoryIsSuccess"
-      :params-id="route.params.id"
+      :params-id="route.params.id || '0'"
     />
 
-    <section class="grid grid-cols-5 gap-8">
+    <section class="grid lg:grid-cols-5 lg:gap-8">
       <!--  Region: Filter Form   -->
-      <div class="col-span-1 flex flex-col gap-4">
+      <div class="lg:col-span-1 flex flex-col gap-4">
         <CategorySideFilterItem label="Lokasi">
           <VTextInput
             v-model="productLocationState"
@@ -113,7 +129,7 @@ const {
       </div>
 
       <!-- Region: Product List -->
-      <div class="col-span-4">
+      <div class="mt-4 lg:mt-0 lg:col-span-4">
         <VInputDropdown
           label="Urut Berdasarkan"
           :items="['Terbaru', 'Harga']"
