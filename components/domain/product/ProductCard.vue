@@ -10,7 +10,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="flex flex-col shadow-lg rounded-2xl overflow-hidden">
+  <div class="flex flex-col rounded-2xl overflow-hidden border border-gray-300">
     <div class="h-[165px] w-full overflow-hidden">
       <img
         :src="product.imageUrl"

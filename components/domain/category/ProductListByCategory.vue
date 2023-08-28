@@ -51,7 +51,9 @@ const { isLoading, error, data, isSuccess } = useQuery({
 
     <!-- Product List -->
     <div v-else-if="isSuccess && data">
-      <div class="grid grid-cols-2 gap-4 mt-4 md:grid-cols-4 lg:grid-cols-6">
+      <div
+        class="grid grid-cols-2 gap-4 mt-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
+      >
         <template v-for="product in data.data" :key="product.id">
           <ProductCard :product="product" />
         </template>

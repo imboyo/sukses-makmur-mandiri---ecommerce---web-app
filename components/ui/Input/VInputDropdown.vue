@@ -62,7 +62,7 @@ const handleSelectItem = (item: ItemType) => {
 
     <!-- Dropdown -->
     <Transition name="options-transition">
-      <div v-if="isOpen && items.length > 0">
+      <div v-if="isOpen && items.length > 0" class="shadow-md">
         <div
           v-for="item in items"
           :key="item"
