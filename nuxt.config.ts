@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   css: ["~/assets/css/tailwind.css", "vue3-carousel/dist/carousel.css"],
-  devtools: { enabled: true },
+  devtools: {enabled: true},
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -9,9 +9,7 @@ export default defineNuxtConfig({
     },
   },
   modules: [
-    "@nuxtjs/eslint-module",
     "@nuxt/image",
-    "@nuxt/content",
     "nuxt-icon",
     "nuxt-simple-sitemap",
     "nuxt-lodash",
