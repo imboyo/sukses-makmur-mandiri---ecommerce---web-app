@@ -50,6 +50,8 @@ const dynamicClasses = computed(() => {
 
   return classes.join(" ");
 });
+
+defineEmits(["update:modelValue", "prepend-icon-click", "append-icon-click"]);
 </script>
 
 <template>
@@ -61,6 +63,7 @@ const dynamicClasses = computed(() => {
         v-if="prependIcon"
         :name="prependIcon"
         class="absolute left-4 top-3.5 text-gray-500 w-5 h-5"
+        @click="$emit('prepend-icon-click')"
       />
       <!--  End: Prepend Icon-->
 
@@ -71,6 +74,8 @@ const dynamicClasses = computed(() => {
         :placeholder="placeholder"
         :disabled="disabled"
         class="text-md w-full"
+        @input="$emit('update:modelValue', value)"
+        v-bind="$attrs"
       />
 
       <!--   Region: Append Icon Block   -->
@@ -86,6 +91,7 @@ const dynamicClasses = computed(() => {
         v-else-if="appendIcon && meta.valid"
         :name="appendIcon"
         class="absolute right-4 top-3 text-gray-500 w-5 h-5"
+        @click="$emit('append-icon-click')"
       />
       <!-- End: End Append Icon Block -->
     </label>

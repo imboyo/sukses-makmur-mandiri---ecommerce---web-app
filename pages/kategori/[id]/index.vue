@@ -4,12 +4,14 @@ import VBreadcrumb from "~/components/ui/breadcrumb/VBreadcrumb.vue";
 import VContainer from "~/components/ui/container/VContainer.vue";
 import { useQuery } from "@tanstack/vue-query";
 import { getCategoriesSubService } from "~/services/category/get-categories-sub.service";
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { ComponentBreadcrumbType } from "~/types/component-breadcrumb";
-import { getProductsService } from "~/services/product/get-products.service";
 import ProductList from "~/components/domain/product/ProductList.vue";
 import VInputDropdown from "~/components/ui/Input/VInputDropdown.vue";
 import SubCategoryList from "~/components/domain/category/SubCategoryList.vue";
+import VTextInput from "~/components/ui/Input/VTextInput.vue";
+import CategorySideFilterItem from "~/components/domain/category/CategorySideFilterItem.vue";
+import { useProductList } from "~/composables/domain/product/useProductList";
 
 const route = useRoute();
 
@@ -54,17 +56,15 @@ const breadcrumb = computed(() => {
 });
 
 // * Product List
-const currPage = ref(1);
-const sortByState = ref("Terbaru");
 const {
+  data: productData,
   isLoading: productIsLoading,
   error: productError,
-  data: productData,
-} = useQuery({
-  queryKey: ["products", categoryIsSuccess, sortByState],
-  // TODO: Change this to your own service
-  queryFn: () => getProductsService(),
-});
+  refetch: productRefetch,
+  currPageState,
+  sortByState,
+  productLocationState,
+} = useProductList();
 </script>
 
 <template>
@@ -81,7 +81,36 @@ const {
 
     <section class="grid grid-cols-5 gap-8">
       <!--  Region: Filter Form   -->
-      <div class="col-span-1"></div>
+      <div class="col-span-1 flex flex-col gap-4">
+        <CategorySideFilterItem label="Lokasi">
+          <VTextInput
+            v-model="productLocationState"
+            name="Lokasi"
+            placeholder="Lokasi"
+            prepend-icon="mdi:location"
+            @keyup.enter="productRefetch"
+          />
+        </CategorySideFilterItem>
+
+        <CategorySideFilterItem label="Harga">
+          <VTextInput
+            v-model="productLocationState"
+            name="min-price"
+            placeholder="Harga Minimum"
+            prepend-icon="fa6-solid:rupiah-sign"
+            @keyup.enter="productRefetch"
+            type="number"
+          />
+          <VTextInput
+            v-model="productLocationState"
+            name="max-price"
+            placeholder="Harga Maksimum"
+            prepend-icon="fa6-solid:rupiah-sign"
+            @keyup.enter="productRefetch"
+            type="number"
+          />
+        </CategorySideFilterItem>
+      </div>
 
       <!-- Region: Product List -->
       <div class="col-span-4">
@@ -89,12 +118,14 @@ const {
           label="Urut Berdasarkan"
           :items="['Terbaru', 'Harga']"
           v-model="sortByState"
+          @update:model-value="productRefetch"
         />
         <ProductList
           :is-loading="productIsLoading"
-          :curr-page="currPage"
+          :curr-page="currPageState"
           :data="productData"
           :error="productError"
+          @update:curr-page="currPageState = $event"
         />
       </div>
     </section>
