@@ -6,7 +6,7 @@ import { CategoriesApiResponseType } from "~/types/categories-api.type";
 defineProps<{
   isLoading: boolean;
   error: unknown;
-  data: CategoriesApiResponseType;
+  data: CategoriesApiResponseType | undefined;
   isSuccess: boolean;
   paramsId: string[] | string;
 }>();

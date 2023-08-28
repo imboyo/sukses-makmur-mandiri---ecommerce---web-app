@@ -33,7 +33,7 @@ const breadcrumb = computed(() => {
         href: "/kategori",
       },
       {
-        text: `${categoryData.value.name}`,
+        text: `${categoryData.value?.name}`,
         href: `/kategori/${route.params.id}`,
       },
     ];
