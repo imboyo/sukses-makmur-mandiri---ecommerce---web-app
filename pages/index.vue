@@ -1,5 +1,9 @@
 <script lang="ts" setup>
 import { useHead } from "unhead";
+import ProductCarouselSection from "~/components/domain/product/ProductCarouselSection.vue";
+import VContainer from "~/components/ui/container/VContainer.vue";
+import CategoryChoosenList from "~/components/domain/category/CategoryChoosenList.vue";
+import ProductListByCategory from "~/components/domain/category/ProductListByCategory.vue";
 
 useHead({
   title: "Sukses Makmur Mandiri",
@@ -14,5 +18,10 @@ useHead({
 </script>
 
 <template>
-  <h1 class="text-3xl font-bold underline">Hello world!</h1>
+  <ProductCarouselSection />
+
+  <VContainer>
+    <CategoryChoosenList />
+    <ProductListByCategory />
+  </VContainer>
 </template>
