@@ -33,7 +33,7 @@ const handleSelectItem = (item: ItemType) => {
 </script>
 
 <template>
-  <div ref="dropdownRef">
+  <div ref="dropdownRef" class="relative">
     <VInputDropdownWrapper__Private
       @click="handleSelectInputClick"
       :is-open="isOpen"
@@ -62,10 +62,10 @@ const handleSelectItem = (item: ItemType) => {
 
     <!-- Dropdown -->
     <Transition name="options-transition">
-      <div v-if="isOpen && items.length > 0" class="shadow-md">
+      <div v-if="isOpen && items.length > 0" class="shadow-md absolute w-full bg-white">
         <div
-          v-for="item in items"
-          :key="item"
+          v-for="(item, index) in items"
+          :key="index"
           @click="() => handleSelectItem(item)"
           class="cursor-pointer"
         >

@@ -1,0 +1,113 @@
+<script lang="ts" setup>
+import { useRoute } from "vue-router";
+import VBreadcrumb from "~/components/ui/breadcrumb/VBreadcrumb.vue";
+import VContainer from "~/components/ui/container/VContainer.vue";
+import { useQuery } from "@tanstack/vue-query";
+import { getCategoriesSubService } from "~/services/category/get-categories-sub.service";
+import CategoryCard from "~/components/domain/category/CategoryCard.vue";
+import VSkeletonLoader from "~/components/ui/skeleton/VSkeletonLoader.vue";
+import { computed, ref, watch } from "vue";
+import { ComponentBreadcrumbType } from "~/types/component-breadcrumb";
+import { getProductsService } from "~/services/product/get-products.service";
+import ProductList from "~/components/domain/product/ProductList.vue";
+import VInputDropdown from "~/components/ui/Input/VInputDropdown.vue";
+import SubCategoryList from "~/components/domain/category/SubCategoryList.vue";
+
+const route = useRoute();
+// Kategori/[id]
+
+const {
+  data: categoryData,
+  isLoading: categoryIsLoading,
+  isSuccess: categoryIsSuccess,
+  error: categoryError,
+} = useQuery({
+  queryKey: ["kategori", route.params.id],
+  queryFn: () => getCategoriesSubService(+route.params.id),
+});
+
+const breadcrumb = computed(() => {
+  if (categoryIsSuccess.value) {
+    return [
+      {
+        text: "Kategori",
+        href: "/kategori",
+      },
+      {
+        text: `${categoryData.value.name}`,
+        href: `/kategori/${route.params.id}`,
+      },
+    ];
+  }
+
+  const breadcrumb: ComponentBreadcrumbType[] = [
+    {
+      text: "Kategori",
+      href: "/kategori",
+    },
+    {
+      text: `${route.params.id}`,
+      href: `/kategori/${route.params.id}`,
+    },
+  ];
+
+  return breadcrumb;
+});
+
+const currPage = ref(1);
+const sortByState = ref("Terbaru");
+const {
+  isLoading: productIsLoading,
+  error: productError,
+  data: productData,
+} = useQuery({
+  queryKey: ["products", categoryIsSuccess, sortByState],
+  // TODO: Change this to your own service
+  queryFn: () => getProductsService(),
+});
+</script>
+
+<template>
+  <VContainer class="flex flex-col gap-8 mt-6">
+    <VBreadcrumb :items="breadcrumb" />
+    <SubCategoryList
+      :is-loading="categoryIsLoading"
+      :data="categoryData"
+      :error="categoryError"
+      :is-success="categoryIsSuccess"
+      :params-id="route.params.id"
+    />
+
+    <section class="grid grid-cols-5 gap-8">
+      <!--   Filter   -->
+      <div class="col-span-1">
+        <div class="flex flex-col gap-4">
+          <div class="flex flex-col gap-2">
+            <h1 class="text-xl font-semibold">Urutkan</h1>
+            <div class="flex flex-col gap-2">
+              <VInputDropdown
+                label="Urut Berdasarkan"
+                :items="['Terbaru', 'Harga']"
+                v-model="sortByState"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-span-4">
+        <VInputDropdown
+          label="Urut Berdasarkan"
+          :items="['Terbaru', 'Harga']"
+          v-model="sortByState"
+        />
+        <ProductList
+          :is-loading="productIsLoading"
+          :curr-page="currPage"
+          :data="productData"
+          :error="productError"
+        />
+      </div>
+    </section>
+  </VContainer>
+</template>

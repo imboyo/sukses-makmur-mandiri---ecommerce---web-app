@@ -51,25 +51,13 @@ const { isLoading, error, data, isSuccess } = useQuery({
       />
     </div>
 
-    <!--  Region: Product Data and State Handling  -->
-    <!-- TODO: Use More Robust Loading State -->
-    <div v-if="isLoading">
-      <!-- Skeleton Loader with Tailwind -->
-      <div
-        class="grid grid-cols-2 gap-4 mt-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
-      >
-        <VSkeletonLoader v-for="product in 50" :key="product" />
-      </div>
-    </div>
-
-    <!--  TODO: Use More Robust Error State -->
-    <div v-if="error">Something Went Wrong</div>
-
     <ProductList
       v-if="isSuccess && data"
       :curr-page="currPage"
       :data="data"
       @update:curr-page="currPage = $event"
+      :is-loading="isLoading"
+      :error="error"
     />
   </section>
 </template>
