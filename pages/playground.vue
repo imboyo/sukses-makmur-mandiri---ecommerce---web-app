@@ -1,17 +1,32 @@
 <script setup lang="ts">
-import { useQuery } from "@tanstack/vue-query";
-import { getChoosenCategoriesService } from "~/services/category/get-choosen-categories.service";
+import VTextInput from "~/components/ui/Input/VTextInput.vue";
+import * as yup from "yup";
+import { useForm } from "vee-validate";
+import VButton from "~/components/ui/button/VButton.vue";
 
-const { data, isSuccess, isLoading, error } = useQuery({
-  queryKey: ["choosen-category"],
-  queryFn: getChoosenCategoriesService,
+const { handleSubmit } = useForm({
+  validationSchema: yup.object({
+    email: yup.string().required().email(),
+    password: yup.string().required().min(6),
+  }),
+});
+
+const onsubmit = handleSubmit((values) => {
+  console.log(values);
+  alert("Submitted");
 });
 </script>
 
 <template>
-  <div class="mt-4 flex flex-col gap-8 px-4 py-20">
-    <template v-if="data && isSuccess">
-      <pre>{{ data }}</pre>
-    </template>
-  </div>
+  <form @submit="onsubmit" class="mt-10 flex flex-col gap-4 px-12">
+    <VTextInput
+      name="email"
+      type="email"
+      success-msg="Good Email"
+      prepend-icon="mdi:email"
+      append-icon="mdi:search"
+    />
+    <VTextInput name="password" type="password" />
+    <VButton type="submit">Submit</VButton>
+  </form>
 </template>

@@ -10,16 +10,16 @@ defineProps<{
 </script>
 
 <template>
-  <div class="flex flex-col rounded-2xl overflow-hidden border border-gray-300">
-    <div class="h-[165px] w-full overflow-hidden">
+  <div class="flex flex-col overflow-hidden rounded-2xl border border-gray-300">
+    <div class="w-full overflow-hidden h-[165px]">
       <img
         :src="product.imageUrl"
         :alt="product.name"
-        class="w-full h-full object-cover"
+        class="h-full w-full object-cover"
       />
     </div>
 
-    <div class="flex flex-col px-2.5 py-2.5 gap-2">
+    <div class="flex flex-col gap-2 px-2.5 py-2.5">
       <!-- Product Thumbnail -->
       <p class="text-sm text-primary-700">
         {{
@@ -31,7 +31,7 @@ defineProps<{
       </p>
 
       <!--  Product Price -->
-      <p class="text-xs text-gray-900 font-semiBold">
+      <p class="text-xs font-semiBold text-gray-900">
         {{ product.price }}
       </p>
 
@@ -51,7 +51,7 @@ defineProps<{
       </PrivateProductCardShopItem>
 
       <!-- Total Product Selled -->
-      <p class="text-gray-500 text-xs">
+      <p class="text-xs text-gray-500">
         Terjual {{ product.countReview.toLocaleString() }}
       </p>
     </div>

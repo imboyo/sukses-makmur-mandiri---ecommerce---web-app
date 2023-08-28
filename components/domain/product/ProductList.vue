@@ -18,7 +18,7 @@ defineEmits(["update:currPage"]);
   <template v-if="isLoading">
     <!-- Skeleton Loader with Tailwind -->
     <div
-      class="grid grid-cols-2 gap-4 mt-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
+      class="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
     >
       <VSkeletonLoader v-for="product in 50" :key="product" />
     </div>
@@ -30,7 +30,7 @@ defineEmits(["update:currPage"]);
   <template v-else-if="data">
     <slot name="products">
       <div
-        class="grid grid-cols-2 gap-4 mt-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
+        class="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
       >
         <template v-for="product in data.data" :key="product.id">
           <ProductCard :product="product" />

@@ -68,7 +68,7 @@ const {
 </script>
 
 <template>
-  <VContainer class="flex flex-col gap-8 mt-6">
+  <VContainer class="mt-6 flex flex-col gap-8">
     <!--  Region: Category List  -->
     <VBreadcrumb :items="breadcrumb" />
     <SubCategoryList

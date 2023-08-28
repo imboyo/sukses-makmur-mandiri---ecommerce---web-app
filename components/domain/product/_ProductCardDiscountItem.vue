@@ -9,7 +9,7 @@ defineProps<{
 <template>
   <div
     v-if="+product.discountPercentage > 0"
-    class="flex flex-row gap-2 items-center"
+    class="flex flex-row items-center gap-2"
   >
     <p>{{ product.discountPercentage }}</p>
     <p>{{ product.original_price }}</p>

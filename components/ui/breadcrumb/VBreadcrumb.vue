@@ -10,7 +10,7 @@ defineProps<{
 <template>
   <div class="flex items-center space-x-2">
     <NuxtLink href="/" class="text-gray-400 hover:text-gray-500">
-      <Icon name="mdi:home" class="w-5 h-5" />
+      <Icon name="mdi:home" class="h-5 w-5" />
     </NuxtLink>
     <span class="text-gray-400">/</span>
 

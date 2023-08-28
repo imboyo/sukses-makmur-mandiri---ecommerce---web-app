@@ -22,7 +22,7 @@ defineEmits(["close"]);
   <transition name="slide">
     <nav
       v-show="isOpen && isTabletAndBelow"
-      class="z-[1000] fixed top-0 left-0 h-screen w-72 bg-white px-4 shadow-xl"
+      class="fixed top-0 left-0 h-screen w-72 bg-white px-4 shadow-xl z-[1000]"
     >
       <slot></slot>
     </nav>
