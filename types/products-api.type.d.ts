@@ -23,7 +23,7 @@ export interface ProductAPIResponseType {
   wishlist:           boolean;
   labels:             any[];
   badges:             Badge[];
-  shop:               Shop;
+  shop:               ProductShopApiResponseType;
   labelGroups:        LabelGroup[];
   __typename:         DatumTypename;
 }
@@ -68,7 +68,7 @@ export enum Type {
   TextDarkOrange = "textDarkOrange",
 }
 
-export interface Shop {
+export interface ProductShopApiResponseType {
   id:           number;
   url:          string;
   name:         Name;

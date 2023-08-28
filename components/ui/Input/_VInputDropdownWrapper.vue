@@ -23,6 +23,7 @@ defineEmits(["click"]);
 
 <template>
   <div @click="$emit('click')" :class="dynamicClass">
+    <!--  Left Side Div as Dropdown Input  -->
     <div class="flex flex-row gap-2">
       <slot></slot>
     </div>

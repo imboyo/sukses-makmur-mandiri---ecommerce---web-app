@@ -3,7 +3,7 @@ import { ProductsAPIResponseType } from "~/types/products-api.type";
 
 // TODO: Get products from server
 export const getProductsService = async () => {
-  // Make fake API Call with delay
+  // Fake API Call with delay
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
   // Get Products from server

@@ -46,8 +46,18 @@ const handleSelectItem = (item: ItemType) => {
       />
 
       <!-- Placeholder and Filled State -->
-      <p v-if="!choosenItem" class="text-gray-500">{{ label }}</p>
-      <p v-else class="text-gray-900">{{ choosenItem }}</p>
+      <template v-if="!choosenItem">
+        <slot name="placeholder">
+          <p class="text-gray-500">{{ label }}</p>
+        </slot>
+      </template>
+
+      <!-- Filled State -->
+      <template v-else>
+        <slot name="value">
+          <p class="text-gray-900">{{ choosenItem }}</p>
+        </slot>
+      </template>
     </VInputDropdownWrapper__Private>
 
     <!-- Dropdown -->
@@ -59,7 +69,9 @@ const handleSelectItem = (item: ItemType) => {
           @click="() => handleSelectItem(item)"
           class="cursor-pointer"
         >
-          <VInputDropdownMenuItem__Private>{{ item }}</VInputDropdownMenuItem__Private>
+          <VInputDropdownMenuItem__Private
+            >{{ item }}
+          </VInputDropdownMenuItem__Private>
         </div>
       </div>
     </Transition>

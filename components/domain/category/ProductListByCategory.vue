@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import VInputDropdown from "~/components/ui/Input/VInputDropdown.vue";
 import { ref } from "vue";
-import { useQuery, useQueryClient } from "@tanstack/vue-query";
+import { useQuery } from "@tanstack/vue-query";
 import { getProductsService } from "~/services/product/get-products.service";
+import ProductCard from "~/components/domain/product/ProductCard.vue";
 
 const categoryState = ref("");
 const subCategoryState = ref("");
@@ -10,18 +11,19 @@ const subSubCategoryState = ref("");
 
 defineEmits(["update:modelValue"]);
 
-useQueryClient();
 const { isLoading, error, data, isSuccess } = useQuery({
   queryKey: ["products", categoryState, subCategoryState, subSubCategoryState],
-  queryFn: getProductsService,
+  // TODO: Change this to your own service
+  queryFn: () => getProductsService(),
 });
 </script>
 
 <template>
   <section class="py-[50px]">
+    <!-- * Heading/Title -->
     <h1 class="text-xl font-semiBold">Popular Product Ranking</h1>
 
-    <!-- Product List -->
+    <!-- Region: Form Input -->
     <div class="flex flex-col gap-2">
       <VInputDropdown
         label="Kategori"
@@ -40,19 +42,18 @@ const { isLoading, error, data, isSuccess } = useQuery({
       />
     </div>
 
-    <!-- Loading -->
+    <!--  Region: Product Data and State Handling  -->
+    <!-- TODO: Use More Robust Loading State -->
     <div v-if="isLoading">Loading...</div>
 
+    <!--  TODO: Use More Robust Error State -->
     <div v-if="error">Something Went Wrong</div>
 
-    <!-- Card List -->
+    <!-- Product List -->
     <div v-else-if="isSuccess && data">
-      <div class="grid grid-cols-2 gap-4 mt-4">
+      <div class="grid grid-cols-2 gap-4 mt-4 md:grid-cols-4 lg:grid-cols-6">
         <template v-for="product in data.data" :key="product.id">
-          <img :src="product.imageUrl" alt="" />
-          <p>
-            {{ product.name }}
-          </p>
+          <ProductCard :product="product" />
         </template>
       </div>
     </div>
