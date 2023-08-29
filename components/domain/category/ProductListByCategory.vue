@@ -4,15 +4,12 @@ import { ref } from "vue";
 import { useQuery } from "@tanstack/vue-query";
 import { getProductsService } from "~/services/product/get-products.service";
 import ProductList from "~/components/domain/product/ProductList.vue";
-import VSkeletonLoader from "~/components/ui/skeleton/VSkeletonLoader.vue";
 
 const categoryState = ref("");
 const subCategoryState = ref("");
 const subSubCategoryState = ref("");
 
-const currPage = ref(1);
-
-defineEmits(["update:modelValue"]);
+const currPageState = ref(1);
 
 const { isLoading, error, data, isSuccess } = useQuery({
   queryKey: [
@@ -20,11 +17,14 @@ const { isLoading, error, data, isSuccess } = useQuery({
     categoryState,
     subCategoryState,
     subSubCategoryState,
-    currPage,
+    currPageState,
   ],
   // TODO: Change this to your own service
   queryFn: () => getProductsService(),
 });
+
+// * Emitter
+defineEmits(["update:modelValue"]);
 </script>
 
 <template>
@@ -36,7 +36,7 @@ const { isLoading, error, data, isSuccess } = useQuery({
     <div class="flex flex-col gap-2">
       <VInputDropdown
         label="Kategori"
-        :items="['Item 1']"
+        :items="['Item 1', 'Item 2', 'Item 3']"
         @update:model-value="categoryState = $event"
       />
       <VInputDropdown
@@ -52,10 +52,9 @@ const { isLoading, error, data, isSuccess } = useQuery({
     </div>
 
     <ProductList
-      v-if="isSuccess && data"
-      :curr-page="currPage"
+      :curr-page="currPageState"
       :data="data"
-      @update:curr-page="currPage = $event"
+      @update:curr-page="currPageState = $event"
       :is-loading="isLoading"
       :error="error"
     />
