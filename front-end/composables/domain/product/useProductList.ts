@@ -10,8 +10,20 @@ export const useProductList = (enable = true) => {
   const sortByState = ref("");
   const productLocationState = ref("");
   const searchQueryState = ref("");
+  const locationState = ref("");
+  const minPriceState = ref<null | number>(null);
+  const maxPriceState = ref<null | number>(null);
 
-  const query = useQuery({
+  const {
+    data,
+    isLoading,
+    isInitialLoading,
+    isError,
+    isFetching,
+    refetch,
+    isSuccess,
+    error,
+  } = useQuery({
     queryKey: ["products", currPageState, sortByState, searchQueryState],
     // TODO: Change this to your own service
     queryFn: () =>
@@ -25,11 +37,22 @@ export const useProductList = (enable = true) => {
     enabled: enable,
   });
 
+  // ! Dont ever use ...destructuring on ref
   return {
     currPageState,
     sortByState,
     productLocationState,
     searchQueryState,
-    ...query,
+    locationState,
+    minPriceState,
+    maxPriceState,
+    data,
+    isLoading,
+    isInitialLoading,
+    isError,
+    isFetching,
+    refetch,
+    isSuccess,
+    error,
   };
 };

@@ -31,6 +31,8 @@ const {
   sortByState,
   searchQueryState,
   isInitialLoading,
+  minPriceState,
+  maxPriceState,
 } = useProductList();
 
 const queryParamHandle = async () => {
@@ -78,7 +80,7 @@ watch(
         <div class="flex flex-col gap-4 lg:col-span-1">
           <CategorySideFilterItem label="Lokasi">
             <VTextInput
-              v-model="productLocationState"
+              v-model.lazy="productLocationState"
               name="Lokasi"
               placeholder="Lokasi"
               prepend-icon="mdi:location"
@@ -88,7 +90,7 @@ watch(
 
           <CategorySideFilterItem label="Harga">
             <VTextInput
-              v-model="productLocationState"
+              v-model.lazy="minPriceState"
               name="min-price"
               placeholder="Harga Minimum"
               prepend-icon="fa6-solid:rupiah-sign"
@@ -96,7 +98,7 @@ watch(
               type="number"
             />
             <VTextInput
-              v-model="productLocationState"
+              v-model.lazy="maxPriceState"
               name="max-price"
               placeholder="Harga Maksimum"
               prepend-icon="fa6-solid:rupiah-sign"

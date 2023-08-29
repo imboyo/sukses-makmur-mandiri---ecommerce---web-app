@@ -28,15 +28,13 @@ defineEmits(["update:currPage"]);
   <div v-else-if="error">Something Went Wrong</div>
 
   <template v-else-if="data">
-    <slot name="products">
-      <div
-        class="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
-      >
-        <template v-for="product in data.data" :key="product.id">
-          <ProductCard :product="product" />
-        </template>
-      </div>
-    </slot>
+    <div
+      class="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
+    >
+      <template v-for="product in data.data" :key="product.id">
+        <ProductCard :product="product" />
+      </template>
+    </div>
 
     <VPagination
       :total-page="data.pageInfo.totalPage"
@@ -44,4 +42,7 @@ defineEmits(["update:currPage"]);
       :current-page="currPage"
     />
   </template>
+
+  <!-- To prevent slot warn -->
+  <div v-else class="hidden"></div>
 </template>

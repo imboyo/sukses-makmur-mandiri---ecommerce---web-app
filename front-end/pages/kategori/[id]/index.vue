@@ -76,17 +76,15 @@ const {
   currPageState,
   sortByState,
   productLocationState,
+  minPriceState,
+  maxPriceState,
 } = useProductList();
 </script>
 
 <template>
-  <Head v-if="categoryData">
-    <Title>Kategori - {{ categoryData.name }}</Title>
-  </Head>
-
   <VContainer class="mt-6 flex flex-col gap-8">
-    <!--  Region: Category List  -->
     <VBreadcrumb :items="breadcrumb" />
+
     <SubCategoryList
       :is-loading="categoryIsLoading"
       :data="categoryData"
@@ -110,7 +108,7 @@ const {
 
         <CategorySideFilterItem label="Harga">
           <VTextInput
-            v-model="productLocationState"
+            v-model="minPriceState"
             name="min-price"
             placeholder="Harga Minimum"
             prepend-icon="fa6-solid:rupiah-sign"
@@ -118,7 +116,7 @@ const {
             type="number"
           />
           <VTextInput
-            v-model="productLocationState"
+            v-model="maxPriceState"
             name="max-price"
             placeholder="Harga Maksimum"
             prepend-icon="fa6-solid:rupiah-sign"

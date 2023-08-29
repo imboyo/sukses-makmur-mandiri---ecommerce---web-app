@@ -71,6 +71,8 @@ const {
   currPageState,
   sortByState,
   productLocationState,
+  minPriceState,
+  maxPriceState,
 } = useProductList();
 </script>
 
@@ -93,7 +95,7 @@ const {
 
         <CategorySideFilterItem label="Harga">
           <VTextInput
-            v-model="productLocationState"
+            v-model="minPriceState"
             name="min-price"
             placeholder="Harga Minimum"
             prepend-icon="fa6-solid:rupiah-sign"
@@ -101,7 +103,7 @@ const {
             type="number"
           />
           <VTextInput
-            v-model="productLocationState"
+            v-model="maxPriceState"
             name="max-price"
             placeholder="Harga Maksimum"
             prepend-icon="fa6-solid:rupiah-sign"

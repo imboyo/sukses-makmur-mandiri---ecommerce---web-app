@@ -6,7 +6,8 @@ import LocNavigation from "~/components/local/navbar/LocNavigation.vue";
   <main>
     <LocNavigation />
 
-    <!-- Region: Page Content  -->
-    <slot />
+    <div>
+      <slot></slot>
+    </div>
   </main>
 </template>

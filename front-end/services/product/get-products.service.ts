@@ -11,6 +11,8 @@ export const getProductsService = async (
   location = "",
   searchQuery = "",
 ) => {
+  console.log("Getting Products from server...")
+
   if (router) {
     const queryDataObj = {
       page: page,
