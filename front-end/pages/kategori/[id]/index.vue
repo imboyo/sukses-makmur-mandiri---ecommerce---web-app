@@ -6,13 +6,9 @@ import { useQuery } from "@tanstack/vue-query";
 import { getCategoriesSubService } from "~/services/category/get-categories-sub.service";
 import { computed } from "vue";
 import { ComponentBreadcrumbType } from "~/types/component-breadcrumb";
-import ProductList from "~/components/domain/product/ProductList.vue";
-import VInputDropdown from "~/components/ui/Input/VInputDropdown.vue";
 import SubCategoryList from "~/components/domain/category/SubCategoryList.vue";
-import VTextInput from "~/components/ui/Input/VTextInput.vue";
-import CategorySideFilterItem from "~/components/domain/category/CategorySideFilterItem.vue";
-import { useProductList } from "~/composables/domain/product/useProductList";
 import { useHead } from "unhead";
+import ProductListWithFetch from "~/components/domain/product/ProductListWithFetch.vue";
 
 const route = useRoute();
 
@@ -27,7 +23,8 @@ useHead({
   ],
 });
 
-// * Category List
+// ! Dont ever place useQuery in composables. It will cause bugs. Use it directly in the component
+// * Category List Fetching
 const {
   data: categoryData,
   isLoading: categoryIsLoading,
@@ -66,19 +63,6 @@ const breadcrumb = computed(() => {
 
   return breadcrumb;
 });
-
-// * Product List
-const {
-  data: productData,
-  isLoading: productIsLoading,
-  error: productError,
-  refetch: productRefetch,
-  currPageState,
-  sortByState,
-  productLocationState,
-  minPriceState,
-  maxPriceState,
-} = useProductList();
 </script>
 
 <template>
@@ -93,55 +77,6 @@ const {
       :params-id="route.params.id || '0'"
     />
 
-    <section class="grid lg:grid-cols-5 lg:gap-8">
-      <!--  Region: Filter Form   -->
-      <div class="flex flex-col gap-4 lg:col-span-1">
-        <CategorySideFilterItem label="Lokasi">
-          <VTextInput
-            v-model="productLocationState"
-            name="Lokasi"
-            placeholder="Lokasi"
-            prepend-icon="mdi:location"
-            @keyup.enter="productRefetch"
-          />
-        </CategorySideFilterItem>
-
-        <CategorySideFilterItem label="Harga">
-          <VTextInput
-            v-model="minPriceState"
-            name="min-price"
-            placeholder="Harga Minimum"
-            prepend-icon="fa6-solid:rupiah-sign"
-            @keyup.enter="productRefetch"
-            type="number"
-          />
-          <VTextInput
-            v-model="maxPriceState"
-            name="max-price"
-            placeholder="Harga Maksimum"
-            prepend-icon="fa6-solid:rupiah-sign"
-            @keyup.enter="productRefetch"
-            type="number"
-          />
-        </CategorySideFilterItem>
-      </div>
-
-      <!-- Region: Product List -->
-      <div class="mt-4 lg:col-span-4 lg:mt-0">
-        <VInputDropdown
-          label="Urut Berdasarkan"
-          :items="['Terbaru', 'Harga']"
-          v-model="sortByState"
-          @update:model-value="productRefetch"
-        />
-        <ProductList
-          :is-loading="productIsLoading"
-          :curr-page="currPageState"
-          :data="productData"
-          :error="productError"
-          @update:curr-page="currPageState = $event"
-        />
-      </div>
-    </section>
+    <ProductListWithFetch />
   </VContainer>
 </template>

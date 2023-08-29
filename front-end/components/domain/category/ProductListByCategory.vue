@@ -11,7 +11,7 @@ const subSubCategoryState = ref("");
 
 const currPageState = ref(1);
 
-const { isLoading, error, data, isSuccess } = useQuery({
+const { isLoading, error, data } = useQuery({
   queryKey: [
     "products",
     categoryState,
