@@ -62,7 +62,7 @@ const handleSelectItem = (item: ItemType) => {
 
     <!-- Dropdown -->
     <Transition name="options-transition">
-      <div v-if="isOpen && items.length > 0" class="absolute w-full bg-white shadow-md z-10">
+      <div v-if="isOpen && items.length > 0" class="absolute z-10 w-full bg-white shadow-md">
         <div
           v-for="(item, index) in items"
           :key="index"

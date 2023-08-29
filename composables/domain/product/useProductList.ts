@@ -3,14 +3,16 @@ import { useQuery } from "@tanstack/vue-query";
 import { getProductsService } from "~/services/product/get-products.service";
 import { useRouter } from "vue-router";
 
-export const useProductList = () => {
+export const useProductList = (enable = true) => {
   const router = useRouter();
 
   const currPageState = ref(1);
-  const sortByState = ref("Terbaru");
+  const sortByState = ref("");
   const productLocationState = ref("");
-  const { isLoading, error, data, refetch } = useQuery({
-    queryKey: ["products", currPageState, sortByState],
+  const searchQueryState = ref("");
+
+  const query = useQuery({
+    queryKey: ["products", currPageState, sortByState, searchQueryState],
     // TODO: Change this to your own service
     queryFn: () =>
       getProductsService(
@@ -18,16 +20,16 @@ export const useProductList = () => {
         currPageState.value,
         sortByState.value,
         productLocationState.value,
+        searchQueryState.value,
       ),
+    enabled: enable,
   });
 
   return {
     currPageState,
     sortByState,
     productLocationState,
-    isLoading,
-    error,
-    data,
-    refetch,
+    searchQueryState,
+    ...query,
   };
 };

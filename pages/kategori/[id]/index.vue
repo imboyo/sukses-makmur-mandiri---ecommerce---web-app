@@ -97,7 +97,7 @@ const {
 
     <section class="grid lg:grid-cols-5 lg:gap-8">
       <!--  Region: Filter Form   -->
-      <div class="lg:col-span-1 flex flex-col gap-4">
+      <div class="flex flex-col gap-4 lg:col-span-1">
         <CategorySideFilterItem label="Lokasi">
           <VTextInput
             v-model="productLocationState"
@@ -129,7 +129,7 @@ const {
       </div>
 
       <!-- Region: Product List -->
-      <div class="mt-4 lg:mt-0 lg:col-span-4">
+      <div class="mt-4 lg:col-span-4 lg:mt-0">
         <VInputDropdown
           label="Urut Berdasarkan"
           :items="['Terbaru', 'Harga']"

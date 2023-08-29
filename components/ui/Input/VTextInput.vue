@@ -56,13 +56,13 @@ defineEmits(["update:modelValue", "prepend-icon-click", "append-icon-click"]);
 
 <template>
   <div class="flex flex-col text-sm gap-1.5">
-    <label class="text-gray-700 relative">
+    <label class="relative text-gray-700">
       <template v-if="label">{{ label }}</template>
       <!-- Region: Prepend Icon -->
       <Icon
         v-if="prependIcon"
         :name="prependIcon"
-        class="absolute left-4 top-3.5 text-gray-500 w-5 h-5"
+        class="absolute left-4 h-5 w-5 text-gray-500 top-3.5"
         @click="$emit('prepend-icon-click')"
       />
       <!--  End: Prepend Icon-->
@@ -73,7 +73,7 @@ defineEmits(["update:modelValue", "prepend-icon-click", "append-icon-click"]);
         :class="dynamicClasses"
         :placeholder="placeholder"
         :disabled="disabled"
-        class="text-md w-full"
+        class="w-full text-md"
         @input="$emit('update:modelValue', value)"
         v-bind="$attrs"
       />
@@ -90,7 +90,7 @@ defineEmits(["update:modelValue", "prepend-icon-click", "append-icon-click"]);
       <Icon
         v-else-if="appendIcon && meta.valid"
         :name="appendIcon"
-        class="absolute right-4 top-3 text-gray-500 w-5 h-5"
+        class="absolute top-3 right-4 h-5 w-5 text-gray-500"
         @click="$emit('append-icon-click')"
       />
       <!-- End: End Append Icon Block -->

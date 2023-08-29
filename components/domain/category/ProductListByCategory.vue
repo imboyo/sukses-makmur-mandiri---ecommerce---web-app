@@ -52,7 +52,6 @@ defineEmits(["update:modelValue"]);
     </div>
 
     <ProductList
-      v-if="isSuccess && data"
       :curr-page="currPageState"
       :data="data"
       @update:curr-page="currPageState = $event"

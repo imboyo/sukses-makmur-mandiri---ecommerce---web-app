@@ -9,12 +9,14 @@ export const getProductsService = async (
   page = 1,
   sort = "terbaru",
   location = "",
+  searchQuery = "",
 ) => {
   if (router) {
     const queryDataObj = {
       page: page,
       sort: sort,
       location: location,
+      q: searchQuery,
     };
 
     // Remove empty query params
