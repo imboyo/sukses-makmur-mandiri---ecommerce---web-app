@@ -15,6 +15,12 @@ const handleSearch = (query: string) => {
   });
 };
 
+const emit = defineEmits(["submit"]);
+
+const handleSubmit = () => {
+  handleSearch(searchQueryState.value);
+  emit("submit", searchQueryState.value);
+};
 </script>
 
 
@@ -23,7 +29,7 @@ const handleSearch = (query: string) => {
     <input
       placeholder="Pencarian Produk"
       class="rounded-lg border border-gray-300 placeholder:text-gray-500 text-gray-900 outline-none transition duration-300 px-3.5 py-2.5 focus:w-[500px] focus:ring-primary-300 focus:ring-2"
-      @keyup.enter="() => handleSearch(searchQueryState)"
+      @keyup.enter="handleSubmit"
       v-model="searchQueryState"
     />
     <Icon

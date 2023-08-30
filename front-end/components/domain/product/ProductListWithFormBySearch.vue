@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import VInputDropdown from "~/components/ui/Input/VInputDropdown.vue";
 import ProductList from "~/components/domain/product/ProductList.vue";
 import ProductGeneralFilterForm from "~/components/domain/product/ProductGeneralFilterForm.vue";
 import { useRoute, useRouter } from "vue-router";
@@ -7,6 +6,9 @@ import { useProductList } from "~/composables/useProductList";
 import { useQuery } from "@tanstack/vue-query";
 import { getProductsService } from "~/services/product/get-products.service";
 import { onMounted, watch } from "vue";
+import VButton from "~/components/ui/button/VButton.vue";
+import VModal from "~/components/ui/modal/VModal.vue";
+import { ref } from "vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -69,12 +71,14 @@ watch(
     })();
   },
 );
+
+const filterFormIsOpen = ref(false);
 </script>
 
 <template>
   <section class="grid lg:grid-cols-5 lg:gap-8">
     <!--  Region: Filter Form   -->
-    <div class="flex flex-col gap-4 lg:col-span-1">
+    <div class="flex-col col-span-full gap-4 lg:col-span-1 hidden lg:flex">
       <ProductGeneralFilterForm
         @submit="
           (event) => {
@@ -87,13 +91,36 @@ watch(
       />
     </div>
 
+    <!-- Region: Mobile Dialog/Modal Form for Filtering -->
+    <VButton
+      class="flex lg:hidden"
+      @click="filterFormIsOpen = true"
+      width="full"
+      >Filter Produk
+    </VButton>
+
+    <VModal :is-open="filterFormIsOpen" @close="filterFormIsOpen = false">
+      <ProductGeneralFilterForm
+        @submit="
+          (event) => {
+            locationState = event.location;
+            minPriceState = event.minPrice;
+            maxPriceState = event.maxPrice;
+          }
+        "
+        @update:sort-by-state="sortByState = $event"
+      >
+        <template #submit>
+          <VButton class="mt-4" width="full" @click="filterFormIsOpen = false"
+            >Terapkan
+          </VButton>
+        </template>
+      </ProductGeneralFilterForm>
+    </VModal>
+    <!-- End Region: Mobile Dialog/Modal Form for Filtering -->
+
     <!-- Region: Product List -->
     <div class="mt-4 lg:col-span-4 lg:mt-0">
-      <VInputDropdown
-        label="Urut Berdasarkan"
-        :items="['Terbaru', 'Harga']"
-        v-model="sortByState"
-      />
       <ProductList
         :is-loading="isInitialLoading"
         :curr-page="currPageState"

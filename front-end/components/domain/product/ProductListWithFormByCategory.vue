@@ -85,6 +85,7 @@ const filterFormIsOpen = ref(false);
       width="full"
       >Filter Produk
     </VButton>
+
     <VModal :is-open="filterFormIsOpen" @close="filterFormIsOpen = false">
       <CategorySideFilterItem v-if="subCategory" label="Kategori">
         <ProductListWithFormByCategoryListCategory
