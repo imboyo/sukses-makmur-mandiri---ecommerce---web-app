@@ -8,7 +8,7 @@ import { computed } from "vue";
 import { ComponentBreadcrumbType } from "~/types/component-breadcrumb";
 import SubCategoryList from "~/components/domain/category/SubCategoryList.vue";
 import { useHead } from "unhead";
-import ProductListWithFetch from "~/components/domain/product/ProductListWithFetch.vue";
+import ProductListWithFormByCategory from "~/components/domain/product/ProductListWithFormByCategory.vue";
 
 const route = useRoute();
 
@@ -77,6 +77,6 @@ const breadcrumb = computed(() => {
       :params-id="route.params.id || '0'"
     />
 
-    <ProductListWithFetch />
+    <ProductListWithFormByCategory />
   </VContainer>
 </template>
