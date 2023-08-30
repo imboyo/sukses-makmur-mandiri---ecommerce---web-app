@@ -1,13 +1,15 @@
 <script lang="ts" setup>
 import { useHead } from "unhead";
 import { onMounted, watch } from "vue";
-import { useRoute } from "vue-router";
-import { useProductList } from "~/composables/domain/product/useProductList";
+import {useRoute, useRouter} from "vue-router";
 import ProductList from "~/components/domain/product/ProductList.vue";
 import VContainer from "~/components/ui/container/VContainer.vue";
 import CategorySideFilterItem from "~/components/domain/category/CategorySideFilterItem.vue";
 import VTextInput from "~/components/ui/Input/VTextInput.vue";
 import VInputDropdown from "~/components/ui/Input/VInputDropdown.vue";
+import { useProductList } from "~/composables/useProductList";
+import {useQuery} from "@tanstack/vue-query";
+import {getProductsService} from "~/services/product/get-products.service";
 
 useHead({
   title: "Kategori",
@@ -21,19 +23,30 @@ useHead({
 });
 
 const route = useRoute();
+const router = useRouter();
 
 const {
-  data,
-  error,
   currPageState,
-  productLocationState,
-  refetch,
   sortByState,
-  searchQueryState,
-  isInitialLoading,
   minPriceState,
   maxPriceState,
+  locationState,
+  searchQueryState,
 } = useProductList();
+
+// ! Dont ever place useQuery in composables. It will cause bugs. Use it directly in the component
+const { data, isInitialLoading, refetch, error } = useQuery({
+  queryKey: ["products", currPageState, sortByState, searchQueryState],
+  // TODO: Change this to your own service
+  queryFn: () =>
+    getProductsService(
+      router,
+      currPageState.value,
+      sortByState.value,
+      locationState.value,
+      searchQueryState.value,
+    ),
+});
 
 const queryParamHandle = async () => {
   // Get query params [q] from URL and check it is empty or not
@@ -80,7 +93,7 @@ watch(
         <div class="flex flex-col gap-4 lg:col-span-1">
           <CategorySideFilterItem label="Lokasi">
             <VTextInput
-              v-model.lazy="productLocationState"
+              v-model.lazy="locationState"
               name="Lokasi"
               placeholder="Lokasi"
               prepend-icon="mdi:location"

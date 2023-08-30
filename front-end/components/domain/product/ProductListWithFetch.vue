@@ -6,17 +6,19 @@ import VInputDropdown from "~/components/ui/Input/VInputDropdown.vue";
 import { useQuery } from "@tanstack/vue-query";
 import { getProductsService } from "~/services/product/get-products.service";
 import { useRouter } from "vue-router";
-import { ref } from "vue";
+import { useProductList } from "~/composables/useProductList";
+
+const {
+  currPageState,
+  sortByState,
+  minPriceState,
+  maxPriceState,
+  locationState,
+  searchQueryState,
+  productLocationState,
+} = useProductList();
 
 const router = useRouter();
-
-const currPageState = ref(1);
-const sortByState = ref("");
-const productLocationState = ref("");
-const searchQueryState = ref("");
-const locationState = ref("");
-const minPriceState = ref<null | number>(null);
-const maxPriceState = ref<null | number>(null);
 
 // ! Dont ever place useQuery in composables. It will cause bugs. Use it directly in the component
 // * Product List Fetching
