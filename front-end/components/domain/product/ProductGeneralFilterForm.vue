@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import VTextInput from "~/components/ui/Input/VTextInput.vue";
-import CategorySideFilterItem from "~/components/domain/category/CategorySideFilterItem.vue";
+import CategorySideFilterItem from "~/components/domain/category/CategorySideFilterItemWrapper.vue";
 import {ref} from "vue";
 import VInputDropdown from "~/components/ui/Input/VInputDropdown.vue";
 
@@ -71,5 +71,7 @@ const handleKeyupEnter = (e: KeyboardEvent) => {
       />
     </CategorySideFilterItem>
     <hr>
+
+    <slot name="submit"></slot>
   </form>
 </template>

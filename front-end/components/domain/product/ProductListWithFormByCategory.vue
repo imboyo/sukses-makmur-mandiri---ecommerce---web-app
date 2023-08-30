@@ -6,8 +6,11 @@ import { useRouter } from "vue-router";
 import { useProductList } from "~/composables/useProductList";
 import ProductGeneralFilterForm from "~/components/domain/product/ProductGeneralFilterForm.vue";
 import { CategoriesApiResponseType } from "~/types/categories-api.type";
-import CategorySideFilterItem from "~/components/domain/category/CategorySideFilterItem.vue";
+import CategorySideFilterItem from "~/components/domain/category/CategorySideFilterItemWrapper.vue";
+import ProductListWithFormByCategoryListCategory from "~/components/domain/product/ProductListWithFormByCategoryListCategory.vue";
 import VButton from "~/components/ui/button/VButton.vue";
+import { ref } from "vue";
+import VModal from "~/components/ui/modal/VModal.vue";
 
 defineProps<{
   subCategory?: CategoriesApiResponseType | undefined;
@@ -47,6 +50,8 @@ const { data, isLoading, error } = useQuery({
       searchQueryState.value,
     ),
 });
+
+const filterFormIsOpen = ref(false);
 </script>
 
 <template>
@@ -55,19 +60,9 @@ const { data, isLoading, error } = useQuery({
     <!-- * Only Show in Desktop  -->
     <div class="flex-col gap-4 col-span-full hidden lg:flex lg:col-span-1">
       <CategorySideFilterItem v-if="subCategory" label="Kategori">
-        <div class="h-[300px] overflow-auto lg:max-h-[400px]">
-          <NuxtLink
-            v-for="category in subCategory.children"
-            :key="category.id"
-            :to="`/kategori/${subCategory.id}/${category.id}`"
-          >
-            <div
-              class="px-4 py-2 hover:bg-primary-50 transition duration-300 rounded-lg text-xs"
-            >
-              {{ category.name }}
-            </div>
-          </NuxtLink>
-        </div>
+        <ProductListWithFormByCategoryListCategory
+          :sub-category="subCategory"
+        />
       </CategorySideFilterItem>
       <hr />
 
@@ -82,6 +77,40 @@ const { data, isLoading, error } = useQuery({
         @update:sort-by-state="sortByState = $event"
       />
     </div>
+
+    <!-- Region: Mobile Dialog/Modal Form for Filtering -->
+    <VButton
+      class="flex lg:hidden"
+      @click="filterFormIsOpen = true"
+      width="full"
+      >Filter Produk
+    </VButton>
+    <VModal :is-open="filterFormIsOpen" @close="filterFormIsOpen = false">
+      <CategorySideFilterItem v-if="subCategory" label="Kategori">
+        <ProductListWithFormByCategoryListCategory
+          :sub-category="subCategory"
+        />
+      </CategorySideFilterItem>
+      <hr />
+
+      <ProductGeneralFilterForm
+        @submit="
+          (event) => {
+            locationState = event.location;
+            minPriceState = event.minPrice;
+            maxPriceState = event.maxPrice;
+          }
+        "
+        @update:sort-by-state="sortByState = $event"
+      >
+        <template #submit>
+          <VButton class="mt-4" width="full" @click="filterFormIsOpen = false"
+            >Terapkan
+          </VButton>
+        </template>
+      </ProductGeneralFilterForm>
+    </VModal>
+    <!-- End Region: Mobile Dialog/Modal Form for Filtering -->
 
     <!-- Region: Product List -->
     <div class="mt-4 col-span-full lg:col-span-4 lg:mt-0">

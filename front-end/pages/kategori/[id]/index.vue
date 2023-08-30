@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/vue-query";
 import { getCategoriesSubService } from "~/services/category/get-categories-sub.service";
 import { computed } from "vue";
 import { ComponentBreadcrumbType } from "~/types/component-breadcrumb";
-import SubCategoryList from "~/components/domain/category/SubCategoryList.vue";
+import SubCategoryList from "~/components/domain/category/CategoryListSection.vue";
 import { useHead } from "unhead";
 import ProductListWithFormByCategory from "~/components/domain/product/ProductListWithFormByCategory.vue";
 
