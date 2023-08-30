@@ -2,7 +2,6 @@
 import { useHead } from "unhead";
 import ProductCarouselSection from "~/components/domain/product/ProductCarouselSection.vue";
 import VContainer from "~/components/ui/container/VContainer.vue";
-import CategoryChoosenList from "~/components/domain/category/CategoryChoosenList.vue";
 import ProductListByCategory from "~/components/domain/category/ProductListByCategory.vue";
 import CategoryCarouselSection from "~/components/domain/category/CategoryCarouselSection.vue";
 

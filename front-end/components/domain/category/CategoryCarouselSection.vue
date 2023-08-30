@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/vue-query";
 import { getChoosenCategoriesService } from "~/services/category/get-choosen-categories.service";
 import VSkeletonLoader from "~/components/ui/skeleton/VSkeletonLoader.vue";
 
-import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
+import { Carousel, Slide, Navigation } from "vue3-carousel";
 import { ref } from "vue";
 
 const { data, isSuccess, isLoading, error } = useQuery({

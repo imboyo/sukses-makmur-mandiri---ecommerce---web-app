@@ -1,6 +1,9 @@
 <script lang="ts" setup>
-import {computed} from "vue";
-import {ComponentButtonBasePropsType, ComponentButtonSizes, ComponentButtonVariants} from "~/types/component-button";
+import { computed } from "vue";
+import {
+  ComponentButtonSizes,
+  ComponentButtonVariants,
+} from "~/types/component-button";
 
 interface PropsType {
   prependIcon?: string;
@@ -55,7 +58,7 @@ const isNotDestructive = {
     link: "text-gray-300",
     "link-gray": "text-gray-300",
   },
-}
+};
 const isDestructive = {
   notDisabled: {
     primary:
@@ -74,8 +77,7 @@ const isDestructive = {
     "tertiary-gray":
       "text-error-700 hover:bg-error-50 hover:text-error-800 active:text-error-700",
     link: "text-error-700 hover:text-error-800 active:text-error-700",
-    "link-gray":
-      "text-error-700 hover:text-error-800 active:text-error-700",
+    "link-gray": "text-error-700 hover:text-error-800 active:text-error-700",
   },
   disabled: {
     primary: "bg-error-200 text-white",
@@ -85,9 +87,8 @@ const isDestructive = {
     "tertiary-gray": "text-error-300",
     link: "text-error-300",
     "link-gray": "text-error-300",
-  }
-}
-
+  },
+};
 
 // Region: Control Dynamic Style for - General
 const buttonClass = computed(() => {
@@ -136,15 +137,15 @@ const buttonClass = computed(() => {
       lg: "gap-2 p-2",
       xl: "gap-2 p-2",
       "2xl": "gap-3 p-3",
-    }
+    },
   };
 
   if (props.iconOnly) {
     classes.push(sizeClassValue.icon[props.size || "md"]);
-    classes.push("rounded-full")
+    classes.push("rounded-full");
   } else {
     classes.push(sizeClassValue.default[props.size || "md"]);
-    classes.push("rounded-md")
+    classes.push("rounded-md");
   }
 
   return classes.join(" ");
@@ -174,18 +175,18 @@ const iconClass = computed(() => {
   <button :class="buttonClass" :disabled="disabled">
     <!--  Prepend Icon  -->
     <template v-if="isLoading">
-      <Icon name="ic:baseline-cached" class="animate-spin" :class="iconClass"/>
+      <Icon name="ic:baseline-cached" class="animate-spin" :class="iconClass" />
     </template>
 
     <template v-else>
       <template v-if="iconOnly">
-        <Icon :name="iconOnly" :class="iconClass"/>
+        <Icon :name="iconOnly" :class="iconClass" />
       </template>
 
       <template v-else>
         <Icon v-if="prependIcon" :name="prependIcon" :class="iconClass"></Icon>
         <slot></slot>
-        <Icon v-if="appendIcon" :name="appendIcon" :class="iconClass"/>
+        <Icon v-if="appendIcon" :name="appendIcon" :class="iconClass" />
       </template>
     </template>
   </button>
