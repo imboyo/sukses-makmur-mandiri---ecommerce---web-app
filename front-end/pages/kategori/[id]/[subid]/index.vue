@@ -8,7 +8,7 @@ import {
   getCategoriesSubService,
 } from "~/services/category/get-categories-sub.service";
 import VContainer from "~/components/ui/container/VContainer.vue";
-import ProductListWithFetch from "~/components/domain/product/ProductListWithFetch.vue";
+import ProductListWithFormByCategory from "~/components/domain/product/ProductListWithFormByCategory.vue";
 
 const route = useRoute();
 
@@ -63,6 +63,6 @@ const breadcrumb = computed(() => {
   <VContainer class="mt-6 flex flex-col gap-8">
     <VBreadcrumb :items="breadcrumb" />
 
-    <ProductListWithFetch />
+    <ProductListWithFormByCategory />
   </VContainer>
 </template>

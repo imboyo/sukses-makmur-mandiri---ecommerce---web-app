@@ -56,6 +56,7 @@ const isOpenState = ref(false);
 
       <!--  Nav Items  -->
       <div class="flex flex-col gap-2">
+        <LNavigationInputSearch @submit="isOpenState = false" />
         <VNavigationMenuItem
           icon="ic:baseline-menu"
           label="Beranda"
