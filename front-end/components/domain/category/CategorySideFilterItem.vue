@@ -8,7 +8,7 @@ defineProps<{
 
 <template>
   <div class="flex flex-col justify-center gap-2">
-    <p class="text-center text-sm">{{ _.capitalize(label) }}</p>
+    <p class="text-center text-sm font-bold">{{ _.capitalize(label) }}</p>
     <slot></slot>
   </div>
 </template>

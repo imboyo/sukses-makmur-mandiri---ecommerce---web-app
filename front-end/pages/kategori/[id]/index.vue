@@ -27,9 +27,7 @@ useHead({
 // * Category List Fetching
 const {
   data: categoryData,
-  isLoading: categoryIsLoading,
   isSuccess: categoryIsSuccess,
-  error: categoryError,
 } = useQuery({
   queryKey: ["kategori", route.params.id],
   queryFn: () => getCategoriesSubService(+route.params.id),
@@ -69,14 +67,6 @@ const breadcrumb = computed(() => {
   <VContainer class="mt-6 flex flex-col gap-8">
     <VBreadcrumb :items="breadcrumb" />
 
-    <SubCategoryList
-      :is-loading="categoryIsLoading"
-      :data="categoryData"
-      :error="categoryError"
-      :is-success="categoryIsSuccess"
-      :params-id="route.params.id || '0'"
-    />
-
-    <ProductListWithFormByCategory />
+    <ProductListWithFormByCategory :sub-category="categoryData" />
   </VContainer>
 </template>

@@ -42,6 +42,7 @@ const handleKeyupEnter = (e: KeyboardEvent) => {
         @update:model-value="$emit('update:sortByState', $event)"
       />
     </CategorySideFilterItem>
+    <hr>
 
     <CategorySideFilterItem label="Lokasi">
       <VTextInput
@@ -51,6 +52,7 @@ const handleKeyupEnter = (e: KeyboardEvent) => {
         prepend-icon="mdi:location"
       />
     </CategorySideFilterItem>
+    <hr />
 
     <CategorySideFilterItem label="Harga">
       <VTextInput
@@ -68,5 +70,6 @@ const handleKeyupEnter = (e: KeyboardEvent) => {
         type="number"
       />
     </CategorySideFilterItem>
+    <hr>
   </form>
 </template>
