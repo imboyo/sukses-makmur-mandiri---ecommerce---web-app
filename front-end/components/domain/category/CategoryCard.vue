@@ -11,7 +11,7 @@ defineProps<PropsType>();
 <template>
   <NuxtLink
     :to="link"
-    class="flex flex-col items-center gap-3 rounded-xl border border-gray-200 p-4"
+    class="flex flex-col items-center gap-3 rounded-xl border border-gray-200 p-4 w-full"
   >
     <!--  Image -->
     <div v-if="image" class="overflow-hidden rounded-xl w-[50px] h-[50px]">
